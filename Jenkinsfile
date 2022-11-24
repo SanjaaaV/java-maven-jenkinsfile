@@ -1,10 +1,8 @@
 node('agent1') {
     stage('build'){
         sh 'git init'
-        withCredentials([usernamePassword(credentialsId: '5bb054df-138d-445d-a645-e5af729fece5', passwordVariable: 'Sanja1972!', usernameVariable: 'svukelic')]) {
-    sh 'git clone http://192.168.10.200:8083/svukelic/java-hello-world-with-maven1.git maven2'
-}
-         
+        git branch: 'main', credentialsId: '2e27d0f2-ad04-4ecb-87dd-92cd66ad8434', url: 'http://192.168.10.200:8083/svukelic/java-hello-world-with-maven1'
+        sh 'git clone http://192.168.10.200:8083/svukelic/java-hello-world-with-maven1.git maven2'   
         sh 'ls -la'   
     }
     stage('comp'){
