@@ -1,5 +1,6 @@
 node('agent1') {
     stage('build'){
+        sh 'git init'
         sh 'ls -la'   
     }
     stage('comp'){
