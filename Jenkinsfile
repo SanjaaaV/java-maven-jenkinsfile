@@ -7,6 +7,7 @@ node('agent1') {
         sh 'ls -la'   
     }
     stage('comp'){
+        jiraComment body: 'problem solved', issueKey: 'TES-1'
         sh 'mvn compile'
     }
     stage('test'){
