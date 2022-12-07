@@ -10,9 +10,8 @@ node('agent1') {
     stage('comp'){
         jiraComment body: 'problem solved', issueKey: 'TES-1'
         sh 'mvn compile'
-        withCredentials([usernamePassword(credentialsId: '2e27d0f2-ad04-4ecb-87dd-92cd66ad8434', passwordVariable: 'python', usernameVariable: 'pythonpost')]) {
-            sh "curl -D -u $USERNAME:$PASSWORD -X GET -H 'Content-Type: application/json' http://192.168.10.200:3537/path/to/api/ endpoint"
-        }
+        sh "curl -D -u $USERNAME:$PASSWORD -X GET -H 'Content-Type: application/json' http://192.168.10.200:3537/path/to/api/ endpoint"
+        
     }
     stage('test'){
         sh 'mvn test' 
