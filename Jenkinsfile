@@ -10,7 +10,7 @@ node('agent1') {
     stage('comp'){
         jiraComment body: 'problem solved', issueKey: 'TES-1'
         sh 'mvn compile'
-        sh "curl -D -X POST -H 'Content-Type: application/json' http://192.168.10.200:3537/jenkins"
+        sh "curl -X POST -H 'Content-Type: application/json' http://192.168.10.200:3537/jenkins"
         
     }
     stage('test'){
