@@ -10,7 +10,7 @@ node('agent1') {
     stage('comp'){
         jiraComment body: 'problem solved', issueKey: 'TES-1'
         sh 'mvn compile'
-        sh "curl -D -u $USERNAME:$PASSWORD -X GET -H 'Content-Type: application/json' http://192.168.10.200:3537/"
+        sh "curl -D -X GET -H 'Content-Type: application/json' http://192.168.10.200:3537/"
         
     }
     stage('test'){
