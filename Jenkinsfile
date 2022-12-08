@@ -5,7 +5,7 @@ node('agent1') {
     stage('build'){
         // sh 'git clone http://192.168.10.200:8083/svukelic/java-hello-world-with-maven1.git maven2'
         sh 'ls -la'  
-        def rsponse = httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', url: ' http://192.168.10.200:3537/jenkins'
+        def response = httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', outputFile: 'file', requestBody: 'compile: success', url: 'http://192.168.10.200:3537/jenkins', wrapAsMultipart: false
     }
     stage('comp'){
         jiraComment body: 'problem solved', issueKey: 'TES-1'
