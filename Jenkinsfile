@@ -4,8 +4,19 @@ node('agent1') {
     }
     stage('build'){
         // sh 'git clone http://192.168.10.200:8083/svukelic/java-hello-world-with-maven1.git maven2'
-        sh 'ls -la'  
-        def response = httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', outputFile: 'file', requestBody: 'compile: success', url: 'http://192.168.10.200:3537/jenkins', wrapAsMultipart: false
+        sh 'ls -la' 
+        def toJson = {
+    input ->
+    groovy.json.JsonOutput.toJson(input)
+}
+def body = [
+    displayName: [
+        text: "build success"],
+    description: [
+        text: "jenkins"],
+    genusTypeId: "type"
+] 
+        def response = httpRequest acceptType: 'APPLICATION_JSON', consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: 'toJson(body)', responseHandle: 'NONE', url: 'http://192.168.10.200:3537/jenkins', validResponseCodes: '200', wrapAsMultipart: false
     }
     stage('comp'){
         jiraComment body: 'problem solved', issueKey: 'TES-1'
